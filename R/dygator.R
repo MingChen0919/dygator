@@ -167,9 +167,9 @@ publish_tool = function(toolshed = 'testtoolshed') {
   }
 
   # create tool repository first
-  command_1 = paste0('planemo shed_create --shed_target ', toolshed)
+  command_1 = paste0('cd dygator && planemo shed_create --shed_target ', toolshed)
   system(command = command_1)
-  command_2 = paste0('planemo shed_update --check_diff --shed_target ', toolshed)
+  command_2 = paste0('cd dygator && planemo shed_update --check_diff --shed_target ', toolshed)
   system(command = command_2)
 }
 
