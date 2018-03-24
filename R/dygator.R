@@ -99,14 +99,14 @@ add_tools = function(tools) {
   macros_xml = system.file('extdata', 'dynamic_tool_wrappers_macros.xml', package = 'dygator')
   macros_xml_content = read_xml(macros_xml)
 
-  exist_tools = xml_find_all(macros_xml_content, 'xml/param/option') %>% xml_text()
+  exist_tools = xml_find_all(macros_xml_content, 'xml/param') %>% xml_text()
   for (i in tools) {
     if (!i %in% exist_tools) {
       # add a new requirement
       macros_xml_content %>%
-        xml_find_all('xml/param/option') %>%
+        xml_find_all('xml/param') %>%
         tail(1) %>%
-        xml_add_sibling('option', i,
+        xml_add_child('option', i,
                         value = 'package', selected = 'false')
     }
   }
