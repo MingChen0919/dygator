@@ -1,0 +1,25 @@
+<tool id="tool_id" name="dynamic tool" version="1.0.0">
+    <macros>
+        <import>dynamic_tool_wrappers_macros.xml</import>
+    </macros>
+    <description></description>
+    <requirements>
+        <expand macro="rmarkdown_requirements" />
+    </requirements>
+    <expand macro="stdio" />
+    <expand macro="shell_command" />
+    <inputs>
+        <expand macro="tool_name" />
+        <expand macro="option_argument_single_dataset" />
+        <expand macro="option_argument_multiple_datasets" />
+        <expand macro="option_argument_path_relative_to_a_tool" />
+        <expand macro="option_argument_path_relative_to_this_tool" />
+        <expand macro="option_argument_string_float_integer" />
+    </inputs>
+    <outputs>
+        <expand macro="output_set" />
+    </outputs>
+    <citations>
+        <expand macro="citations" />
+    </citations>
+</tool>
