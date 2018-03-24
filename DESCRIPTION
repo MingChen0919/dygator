@@ -1,0 +1,14 @@
+Package: dygator
+Title: Assist in developing DYnamic GAlaxy TOols
+Version: 0.0.0.9000
+Authors@R: person("Ming", "Chen", email = "ming.chen0919t@gmail.com", role = c("aut", "cre"))
+Description: This package helps in developing DYnamic GAlaxy TOols.
+Depends: R (>= 3.4.0)
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+  xml2 (>= 1.2.0),
+  dplyr (>= 0.7.4),
+  magrittr
+RoxygenNote: 6.0.1
