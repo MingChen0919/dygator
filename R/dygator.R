@@ -50,8 +50,7 @@ add_requirements = function(df) {
     stop('dygator does not exist. Please run init_dygator() to initialize a tool first.')
   }
 
-  macros_xml = system.file('extdata', 'dynamic_tool_wrappers_macros.xml', package = 'dygator')
-  macros_xml_content = read_xml(macros_xml)
+  macros_xml_content = read_xml('dygator/dynamic_tool_wrappers_macros.xml')
 
   for (i in 1:nrow(df)) {
     exist_packages = xml_find_all(macros_xml_content, 'xml/requirement') %>% xml_text()
@@ -96,8 +95,7 @@ add_tools = function(tools) {
     stop('dygator does not exist. Please run init_dygator() to initialize a tool first.')
   }
 
-  macros_xml = system.file('extdata', 'dynamic_tool_wrappers_macros.xml', package = 'dygator')
-  macros_xml_content = read_xml(macros_xml)
+  macros_xml_content = read_xml('dygator/dynamic_tool_wrappers_macros.xml')
 
   exist_tools = xml_find_all(macros_xml_content, 'xml/param') %>% xml_text()
   for (i in tools) {
