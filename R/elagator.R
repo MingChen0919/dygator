@@ -104,7 +104,7 @@ add_tools = function(tools) {
         xml_find_all('xml/param') %>%
         tail(1) %>%
         xml_add_child('option', i,
-                        value = 'package', selected = 'false')
+                        value = i, selected = 'false')
     }
   }
 
