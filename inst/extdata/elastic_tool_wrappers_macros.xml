@@ -21,14 +21,14 @@
     <!--OPTION/ARGUMENT PAIRS and INPUT types-->
     <!--input files-->
     <xml name="option_argument_single_dataset">
-        <repeat name="option_argument_single_dataset_repeat" title="INPUT SINGLE DATASET" min="0" default="0">
+        <repeat name="option_argument_single_dataset_repeat" title="INPUT DATA FROM HISTORY: single data set" min="0" default="0">
             <param type="text" name="flag" optional="true" label="flag" />
             <param name="value" type="data" optional="false" multiple="false" label="value"/>
         </repeat>
     </xml>
 
     <xml name="option_argument_multiple_datasets">
-        <repeat name="option_argument_multiple_datasets_repeat" title="INPUT MULTIPLE DATASETS" min="0" default="0">
+        <repeat name="option_argument_multiple_datasets_repeat" title="INPUT DATA FROM HISTORY: multiple data sets" min="0" default="0">
             <param type="text" name="flag" optional="true" label="flag" />
             <param name="value" type="data" optional="false" multiple="true" label="value"/>
             <param type="select" name="delimiter" multiple="false" label="file delimiter">
@@ -40,14 +40,14 @@
 
     <!--input path-->
     <xml name="option_argument_path_relative_to_a_tool">
-        <repeat name="option_argument_path_relative_to_a_tool_repeat" title="INPUT PATH: path relative to a tool" min="0" default="0">
+        <repeat name="option_argument_path_relative_to_a_tool_repeat" title="INPUT DATA PATH: relative to a tool output directory" min="0" default="0">
             <param type="text" name="flag" optional="true" label="flag"  />
             <param name="a_tool_output_dir" type="data" optional="false" multiple="false" label="a tool output directory"/>
             <param type="text" name="value" optional="true" label="value"  />
         </repeat>
     </xml>
     <xml name="option_argument_path_relative_to_this_tool">
-        <repeat name="option_argument_path_relative_to_this_tool_repeat" title="INPUT PATH: path relative to this tool" min="0" default="0">
+        <repeat name="option_argument_path_relative_to_this_tool_repeat" title="OUTPUT PATH: relative to this tool output directory" min="0" default="0">
             <param type="text" name="flag" optional="true" label="flag"  />
             <param type="text" name="value" optional="false" label="value"  />
             <param type="select" name="path_type" multiple="false" label="path type">
