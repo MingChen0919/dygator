@@ -1,16 +1,16 @@
 # Dynamic Galaxy Tool wrappers
 
-Use this repository as a template to develop a dynamic Galaxy tools in one minute!
+Use this repository as a template to develop a elastic Galaxy tools in one minute!
 
 ## Step 1: clone this repository
 
 ```bash
-git clone https://github.com/statonlab/dynamic-galaxy-tool-wrappers.git
+git clone https://github.com/statonlab/elastic-galaxy-tool-wrappers.git
 ``` 
 
 ## Step 2: edit tool requirements
 
-Open the `dynamic_tool_wrappers_macros.xml` file and add your tool requirements. **Only tools from the 
+Open the `elastic_tool_wrappers_macros.xml` file and add your tool requirements. **Only tools from the 
 [conda repository](https://anaconda.org/anaconda/repo) can be added as a tool requirement. For example, for a wrapper
 of the **FastQC** tool, go to [https://anaconda.org/anaconda/repo](https://anaconda.org/anaconda/repo) and search for
 `fastqc`. You will get a list of `fastqc` tools. Find the appropriate version and add it as a tool requirement.
@@ -38,7 +38,7 @@ After editing tool requirement:
 
 ## Step 3: edit template for a specific command line tool
 
-Open the `dynamic_tool_wrappers_macros.xml` file and replace `tool_name` in 
+Open the `elastic_tool_wrappers_macros.xml` file and replace `tool_name` in 
 `<option value="tool_name" selected="false">tool_name</option>` with a valid command line tool name.
 
 ```xml
@@ -72,19 +72,19 @@ for the `samtools` tool, it could be
     </xml>
 ```
 
-## Step 4: edit **tool name** and **tool id** in `dynamic_tool.xml`
+## Step 4: edit **tool name** and **tool id** in `elastic_tool.xml`
 
-Open the `dynamic_tool.xml` file and replace `dynamic_tool` with an appropriate **tool id** and the `dynamic tool` with
+Open the `elastic_tool.xml` file and replace `elastic_tool` with an appropriate **tool id** and the `elastic tool` with
 an appropriate **tool name**.
 
 ```xml
-<tool id="dynamic_tool" name="dynamic tool" version="1.0.0">
+<tool id="elastic_tool" name="elastic tool" version="1.0.0">
 ```
 
 Use the **FastQC** tool as an example, it could be:
 
 ```xml
-<tool id="dynamic_fastqc" name="Dynamic FastQC" version="1.0.0">
+<tool id="elastic_fastqc" name="Dynamic FastQC" version="1.0.0">
 ```
 
 ## Step 5: Publish tool to [ToolShed](https://toolshed.g2.bx.psu.edu/) or [Test ToolShed](https://testtoolshed.g2.bx.psu.edu/)

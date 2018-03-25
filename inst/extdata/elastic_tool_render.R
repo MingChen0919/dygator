@@ -17,7 +17,7 @@ options_and_arguments = read.table(paste0(Sys.getenv('REPORT_FILES_PATH'), '/opt
 
 
 #-----------------render Rmd--------------
-render(paste0(Sys.getenv('TOOL_INSTALL_DIR'), '/dynamic_tool.Rmd'),
+render(paste0(Sys.getenv('TOOL_INSTALL_DIR'), '/elastic_tool.Rmd'),
        output_file = paste0(Sys.getenv('REPORT_FILES_PATH'), '/report.html'))
 
 # for some unknow reason, directly using REPORT as the input value for output_file parameter

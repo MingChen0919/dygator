@@ -2,10 +2,10 @@
 
 export(add_requirements)
 export(add_tools)
-export(init_dygator)
+export(init_elagator)
 export(it_tool)
 export(publish_tool)
-export(reinit_dygator)
+export(reinit_elagator)
 export(remove_requirements)
 export(remove_tools)
 import(dplyr)

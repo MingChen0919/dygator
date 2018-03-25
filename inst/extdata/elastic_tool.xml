@@ -1,6 +1,6 @@
-<tool id="tool_id" name="dynamic tool" version="1.0.0">
+<tool id="tool_id" name="elastic tool" version="1.0.0">
     <macros>
-        <import>dynamic_tool_wrappers_macros.xml</import>
+        <import>elastic_tool_wrappers_macros.xml</import>
     </macros>
     <description></description>
     <requirements>

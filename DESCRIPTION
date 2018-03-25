@@ -1,8 +1,8 @@
-Package: dygator
-Title: Assist in developing DYnamic GAlaxy TOols
+Package: elagator
+Title: Assist in developing ELAstic GAlaxy TOols in R
 Version: 0.0.0.9000
 Authors@R: person("Ming", "Chen", email = "ming.chen0919t@gmail.com", role = c("aut", "cre"))
-Description: This package helps in developing DYnamic GAlaxy TOols.
+Description: This package helps in developing ELAstic GAlaxy TOols in R.
 Depends: R (>= 3.4.0)
 License: MIT
 Encoding: UTF-8
