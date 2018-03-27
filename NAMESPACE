@@ -2,6 +2,7 @@
 
 export(add_requirements)
 export(add_tools)
+export(create_shed_yml)
 export(init_elagator)
 export(it_tool)
 export(publish_tool)
@@ -10,4 +11,5 @@ export(remove_requirements)
 export(remove_tools)
 import(dplyr)
 import(xml2)
+import(yaml)
 importFrom(magrittr,"%>%")

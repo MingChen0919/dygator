@@ -3,6 +3,7 @@
 
 #' @import xml2
 #' @import dplyr
+#' @import yaml
 #' @importFrom magrittr %>%
 NULL
 
@@ -145,6 +146,27 @@ it_tool = function(id='tool_id', name='tool name', version='1.0.0') {
   xml_attrs(xml_content) = c(id=id, name=name, version=version)
   # update elastic_tool.xml
   write_xml(xml_content, file = 'elagator/elastic_tool.xml')
+}
+
+
+#' \code{create_shed_yml} creates a \code{.shed.yml} file within the elagator directory.
+#'
+#' @param name a string used as ToolShed repository name.
+#' @param owner ToolShed user account.
+#' @param description a brief introduction to the tool.
+#' @param long_description  detailed information about this tool.
+#' @param type tool type. Default is 'unrestricted'
+#' @param categories a vector of strings to specify which categories this tool belongs to.
+#' @export
+create_shed_yml = function(name, owner, description, long_description="", type='unrestricted', categories='') {
+  l = list()
+  l$name = name
+  l$owner = owner
+  l$description = description
+  l$long_description = long_description
+  l$type = type
+  l$categories = categories
+  write_yaml(l, 'elagtor/.shed.yml')
 }
 
 
