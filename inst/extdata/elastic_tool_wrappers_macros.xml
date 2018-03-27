@@ -79,7 +79,7 @@
         <command><![CDATA[
 
         ############ first, create a directory to store all files
-        mkdir -p $report.files_path && cd $report.files_path &&
+        mkdir -p $report.files_path &&
 
 
         ############ save the tool installation directory to an environment variable
@@ -93,11 +93,11 @@
         #########################
 
         ## first line will be the header
-        echo 'type|flag|value|path_type' > options_and_arguments.txt &&
+        echo 'type|flag|value|path_type' > $report.files_path/options_and_arguments.txt &&
 
         ############ tool_name
         ##-t '$tool_name'
-        echo "tool_name|not available|${tool_name}|not available" >> options_and_arguments.txt &&
+        echo "tool_name|not available|${tool_name}|not available" >> $report.files_path/options_and_arguments.txt &&
 
         ####################################################
         ## loop through repeats to get option/argument pairs
@@ -106,32 +106,32 @@
         ############ option_argument_single_dataset
         #for i in $option_argument_single_dataset_repeat:
             #set $item = 'single_dataset|' + str($i.flag) + "|" + str($i.value) + "|"
-            echo '$item' >> options_and_arguments.txt &&
+            echo '$item' >> $report.files_path/options_and_arguments.txt &&
         #end for
 
         ############ option_argument_multiple_datasets
         #for i in $option_argument_multiple_datasets_repeat:
             #set $item = 'multiple_datasets|' + str($i.flag) + "|" + str($i.value).replace(',', str($i.delimiter)) + "|"
-            echo '$item' >> options_and_arguments.txt &&
+            echo '$item' >> $report.files_path/options_and_arguments.txt &&
         #end for
 
 
         ############ option_argument_path_relative_to_a_tool
         #for i in $option_argument_path_relative_to_a_tool_repeat:
              #set $item = 'path_relative_to_a_tool|' + str($i.flag) + "|" + str($i.value) + "|" + str($i.a_tool_output_dir)
-             echo '$item' >> options_and_arguments.txt &&
+             echo '$item' >> $report.files_path/options_and_arguments.txt &&
         #end for
 
         ############ option_argument_path_relative_to_this_tool
         #for i in $option_argument_path_relative_to_this_tool_repeat:
              #set $item = 'path_relative_to_this_tool|' + str($i.flag) + "|" + str($i.value) + "|" + str($i.path_type)
-             echo '$item' >> options_and_arguments.txt &&
+             echo '$item' >> $report.files_path/options_and_arguments.txt &&
         #end for
 
         ############ option_argument_string_float_integer
         #for i in $option_argument_string_float_integer_repeat:
              #set $item = 'value|' + str($i.flag) + "|" + str($i.value) + "|"
-             echo '$item' >> options_and_arguments.txt &&
+             echo '$item' >> $report.files_path/options_and_arguments.txt &&
         #end for
 
         ############ output_set

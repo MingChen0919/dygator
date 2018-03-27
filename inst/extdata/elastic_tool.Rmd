@@ -1,5 +1,5 @@
 ---
-title: 'Dynamic tool'
+title: 'Tool Report'
 output: html_document
 ---
 
@@ -18,14 +18,13 @@ knitr::opts_chunk$set(error = TRUE)
 
 ## User input
 
-```{r, echo=FALSE}
-##-------- build script files -----------
-
-# build script file: script.sh
+```{r, 'display user input'}
+# get user input and save it into a data frame.
 df = read.table(paste0(Sys.getenv('REPORT_FILES_PATH'), '/options_and_arguments.txt'), 
                 sep = '|', header = TRUE)
 
-# prepend A_TOOL_OUTPUT_PATH
+# if the input type is 'path_relative_to_a_tool', prepend A_TOOL_OUTPUT_PATH to the value to make
+# the value a full path.
 if (nrow(df[df$type == 'path_relative_to_a_tool', ]) > 0) {
   for (i in 1:nrow(df[df$type == 'path_relative_to_a_tool', ])) {
     root_path = readLines(df[df$type == 'path_relative_to_a_tool', ][i, 'path_type'])[1]
@@ -35,13 +34,16 @@ if (nrow(df[df$type == 'path_relative_to_a_tool', ]) > 0) {
   }
 }
 
-# get tool name
-tool_name = df[df$type == 'tool_name', 'value']
-# build script for displaying help messages (this probably should be tool specific)
-write(paste0(tool_name, ' -h'), 
-        file = paste0(Sys.getenv('REPORT_FILES_PATH'), '/help.sh'))
-
+## display user input as a table
 knitr::kable(df)
+```
+
+
+```{r, 'build script', echo=FALSE}
+##-------- build script files -----------
+
+# get tool name, the first line of the script is always the tool name.
+tool_name = df[df$type == 'tool_name', 'value']
 
 # if the number of option/argument pairs is larger than 0, build script file
 df2 = df[df$type != 'tool_name', ]
@@ -66,17 +68,13 @@ if (nrow(df2) > 0) {
   write(paste0(tool_name, ' -h'), 
         file = paste0(Sys.getenv('REPORT_FILES_PATH'), '/script.sh'))
 }
-
 ```
 
 
-```{bash, echo=FALSE}
-## code to open help documentation
-sh ${REPORT_FILES_PATH}/help.sh > ${TOOL_HELP_DOC}
-```
+```{r, 'create paths if they do not exist', echo=FALSE}
+## if the input type is 'path_relative_to_this_tool', that means 
+## we need to create a directory or file path.
 
-
-```{r, echo=FALSE}
 # create paths before running the job script
 df_paths = df[df$type == 'path_relative_to_this_tool', ]
 
@@ -103,15 +101,14 @@ if (nrow(df_paths) > 0) {
 ```
 
 
-```{bash, echo=FALSE}
-# run job script
-# it's important to run the job within the REPORT_FILES_PATH
-cd ${REPORT_FILES_PATH} && sh script.sh
+```{bash, 'run jobs', echo=FALSE}
+# run job script, always use absolute path. 
+# we want to run all jobs within the working path.
+sh ${REPORT_FILES_PATH}/script.sh
 ```
 
 
-
-```{bash, results='asis', echo=FALSE}
+```{bash, 'display script', results='asis', echo=FALSE}
 echo '## Job script'
 echo ''
 echo ''
@@ -121,16 +118,10 @@ echo '```'
 ```
 
 
-```{r, echo=FALSE}
-## obtain REPORT_FILES_PAHT and save it to a galaxy output.
-database_root = paste(head(strsplit(Sys.getenv('TOOL_LOG'), '/')[[1]], -1), collapse = '/')
-tool_output_dir_id = tail(strsplit(Sys.getenv('REPORT_FILES_PATH'), '/')[[1]], 1)
-tool_output_dir = paste0(database_root, '/', tool_output_dir_id)
-write(tool_output_dir, Sys.getenv('TOOL_OUTPUT_DIR'))
-```
+```{r, 'display output directory contents', results='asis', echo=FALSE}
+## after the job is done, we list all files from the output directory.
+## full relative path to the output directory needs to be displayed.
 
-
-```{r, results='asis', echo=FALSE}
 cat('##All output files')
 cat('\n\n')
 all_files = list.files(path = Sys.getenv('REPORT_FILES_PATH'), 
@@ -143,3 +134,14 @@ for (f in sub(Sys.getenv('REPORT_FILES_PATH'), '.', all_files) ) {
 cat('\n')
 ```
 
+
+```{r, 'save output directory of this tool', echo=FALSE}
+## each elastic tool has a galaxy history output which contains the REPORT_FILES_PATH of this tool
+## so that other tools can reference the outputs from this tool.
+
+## obtain REPORT_FILES_PAHT and save it to a galaxy output.
+database_root = paste(head(strsplit(Sys.getenv('TOOL_LOG'), '/')[[1]], -1), collapse = '/')
+tool_output_dir_id = tail(strsplit(Sys.getenv('REPORT_FILES_PATH'), '/')[[1]], 1)
+tool_output_dir = paste0(database_root, '/', tool_output_dir_id)
+write(tool_output_dir, Sys.getenv('TOOL_OUTPUT_DIR'))
+```
